@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen">
-        <activity android:name=".LoginActivity_">
+        <activity android:name=".PageMozaikActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,6 +21,7 @@
         <activity android:name=".SignupActivity_" />
         <activity android:name=".Test_" />
         <activity android:name=".MainContainerActivity_" />
+        <activity android:name=".LoginActivity_" />
     </application>
 
 </manifest>
