@@ -20,8 +20,24 @@ public class User {
     List<String> friendsUsername;
     List<String> friendRequests;
 
-    public User(String username, String sessionKey, JSONArray imageURLs, JSONArray friendsUsername, JSONArray friendRequests) throws JSONException {
+    public User(String username, JSONArray imageURLs, JSONArray friendsUsername, JSONArray friendRequests) throws JSONException {
         Log.d("USER", "creating new user...");
+        this.username = username;
+        this.imageURLs = new ArrayList<String>();
+        this.friendsUsername = new ArrayList<String>();
+        this.friendRequests = new ArrayList<String>();
+
+        for(int i = 0; i < imageURLs.length(); i++) {
+            this.imageURLs.add(imageURLs.getString(i));
+            Log.d("USER", imageURLs.getString(i));
+        }
+        for(int i = 0; i < imageURLs.length(); i++)
+            this.friendsUsername.add(imageURLs.getString(i));
+        for(int i = 0; i < imageURLs.length(); i++)
+            this.friendRequests.add(imageURLs.getString(i));
+    }
+
+    public User(String username, String sessionKey, JSONArray imageURLs, JSONArray friendsUsername, JSONArray friendRequests) throws JSONException {
         this.username = username;
         this.sessionKey = sessionKey;
         this.imageURLs = new ArrayList<String>();

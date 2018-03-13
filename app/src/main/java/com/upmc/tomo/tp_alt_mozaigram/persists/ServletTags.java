@@ -9,6 +9,8 @@ public class ServletTags {
     public static String CREATE_USER_SERVLET_TAG = "CreateUserServlet";
 
     public static String USERNAME = "username";
+    public static String PASSWORD = "password";
+    public static String EMAIL = "email";
     public static String SESSION_KEY = "sessionKey";
     public static String IMAGES = "images";
     public static String FRIEND_REQUESTS = "friendRequests";
