@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TP_ALT_MozaiGram</string>
+    <string name="generate_mozaik">Generate Mosaic</string>
+    <string name="save_mozaik">Save generated Mosaic</string>
+    <string name="mozaik_generation">Mozaik Generator</string>
+    <string name="mozaik_gallery">Mozaik Gallery</string>
+
+    <string name="app_description">Prenez une photo, g\u00e9n\u00e9rez une mosa\u00efque de cette image, et partagez-la \u00e0 tous vos amis ou utilisez-la en tant que fond d\'\u00e9cran !</string>
 </resources>

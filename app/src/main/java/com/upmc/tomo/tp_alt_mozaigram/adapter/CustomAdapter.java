@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.upmc.tomo.tp_alt_mozaigram.R;
-import com.upmc.tomo.tp_alt_mozaigram.task.DownloadImgBitmapTask;
 
 import java.util.List;
 
