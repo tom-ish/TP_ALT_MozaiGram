@@ -40,7 +40,7 @@ import java.util.Date;
 
 public class PageMozaikActivity extends AppCompatActivity {
     static final String TAG = PageMozaikActivity.class.getSimpleName();
-
+    //
     private static final int CAMERA = 10;
     private static final int GALLERY = 20;
     private static final int PERMISSIONS = 200;
