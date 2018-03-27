@@ -14,16 +14,24 @@
 
     <Button
 
+        android:id="@+id/chooseOrTakeBtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/chooseOrTakeBtn"
         android:layout_below="@id/wordEditText"
         android:text="Choose a picture"/>
 
+    <Button
+
+        android:id="@+id/accessGalleryBtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/chooseOrTakeBtn"
+        android:text="Show Gallery"/>
+
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_below="@id/chooseOrTakeBtn"/>
+        android:layout_below="@id/accessGalleryBtn"/>
 
 </RelativeLayout>

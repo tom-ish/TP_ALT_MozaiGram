@@ -10,6 +10,7 @@ import com.upmc.tomo.tp_alt_mozaigram.model.User;
 public class Persists {
 
     public static String REQUEST_TAG = "com.upmc.tomo.TP_ALT_MozaiGram";
+    public static final String IMAGE_DIRECTORY = "MozaiGram";
     public static RequestQueue REQUEST_QUEUE;
     public static User currentUser;
 

@@ -3,14 +3,19 @@
     package="com.upmc.tomo.tp_alt_mozaigram">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+        android:theme="@style/AppTheme">
         <activity android:name=".PageMozaikActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +27,25 @@
         <activity android:name=".Test_" />
         <activity android:name=".MainContainerActivity_" />
         <activity android:name=".LoginActivity_" />
+        <activity
+            android:name=".SingleImageRowActivity"
+            android:label="@string/title_activity_single_image_row" />
+        <activity
+            android:name=".GalleryActivity"
+            android:label="@string/title_activity_gallery" />
+        <activity
+            android:name=".GalleryPreviewActivity"
+            android:label="@string/title_activity_gallery_preview" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
     </application>
 
 </manifest>

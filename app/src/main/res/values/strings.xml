@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TP_ALT_MozaiGram</string>
+    <string name="title_activity_single_image_row">SingleImageRowActivity</string>
+    <string name="title_activity_gallery">GalleryActivity</string>
+    <string name="title_activity_gallery_preview">GalleryPreviewActivity</string>
+    <string name="title_activity_main_tab">MainTabActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>
