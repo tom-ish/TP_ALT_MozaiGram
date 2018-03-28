@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.upmc.tomo.tp_alt_mozaigram.fragments.GalleryFragment;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.ImageGridFragment;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment_;
@@ -26,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @FragmentById
     Fragment currentFragment;
+
 
     FragmentManager fragmentManager;
 
@@ -58,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
     @Click
     public void mozaikGalleryFragmentButton() {
         if(displayedFragment == DisplayState.GENERATOR) {
-            ImageGridFragment mozaikGalleryFragment = new ImageGridFragment();
+            GalleryFragment mozaikGalleryFragment = new GalleryFragment();
             this.fragmentManager.beginTransaction()
                     .replace(R.id.currentFragment, mozaikGalleryFragment)
                     .commit();

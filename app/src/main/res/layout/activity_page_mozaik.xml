@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.upmc.tomo.tp_alt_mozaigram.PageMozaikActivity">
+
+    <EditText
+        android:id="@+id/wordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Enter a word ..."/>
+
+    <Button
+
+        android:id="@+id/chooseOrTakeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/wordEditText"
+        android:text="Choose a picture"/>
+
+    <Button
+
+        android:id="@+id/accessGalleryBtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/chooseOrTakeBtn"
+        android:text="Show Gallery"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/accessGalleryBtn"/>
+
+</RelativeLayout>

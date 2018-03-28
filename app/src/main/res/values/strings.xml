@@ -6,4 +6,10 @@
     <string name="mozaik_gallery">Mozaik Gallery</string>
 
     <string name="app_description">Prenez une photo, g\u00e9n\u00e9rez une mosa\u00efque de cette image, et partagez-la \u00e0 tous vos amis ou utilisez-la en tant que fond d\'\u00e9cran !</string>
+    <string name="title_activity_single_image_row">SingleImageRowActivity</string>
+    <string name="title_activity_gallery">GalleryActivity</string>
+    <string name="title_activity_gallery_preview">GalleryPreviewActivity</string>
+    <string name="title_activity_main_tab">MainTabActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>
