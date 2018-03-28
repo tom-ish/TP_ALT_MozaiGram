@@ -1,6 +1,7 @@
 package com.upmc.tomo.tp_alt_mozaigram.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,12 @@ import java.util.ArrayList;
  */
 
 public class SingleAlbumAdapter extends BaseAdapter {
-    private Activity activity;
+    private Context context;
     private ArrayList<String> data;
 
-    public SingleAlbumAdapter(Activity a, ArrayList<String> d) {
-        activity = a;
-        data = d;
+    public SingleAlbumAdapter(Context context, ArrayList<String> d) {
+        this.context = context;
+        this.data = d;
     }
 
     public int getCount() {
@@ -41,9 +42,7 @@ public class SingleAlbumAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView holder = null;
         if (convertView == null) {
-            convertView = LayoutInflater.from(activity).inflate(
-                    R.layout.activity_single_image_row, parent, false);
-
+            convertView = LayoutInflater.from(context).inflate(R.layout.activity_single_image_row, parent, false);
             holder = convertView.findViewById(R.id.galleryImage);
 
             convertView.setTag(holder);
@@ -54,7 +53,7 @@ public class SingleAlbumAdapter extends BaseAdapter {
         String fname = data.get(position);
         try {
 
-            Glide.with(activity)
+            Glide.with(context)
                     .load(new File(fname)) // Uri of the picture
                     .into(holder);
 

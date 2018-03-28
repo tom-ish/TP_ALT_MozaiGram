@@ -25,7 +25,6 @@ public class GalleryFragment extends Fragment {
     final String TAG = GalleryFragment.class.getSimpleName();
 
     GridView galleryGridView;
-    LoadImagesTask loadImagesTask;
     ArrayList<String> imageList = new ArrayList<>();
     String album_name = "My Mozaik";
     SingleAlbumAdapter adapter;
@@ -33,7 +32,6 @@ public class GalleryFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new SingleAlbumAdapter(getActivity(), imageList);
     }
 
     @Nullable
@@ -41,9 +39,9 @@ public class GalleryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_gallery, container, false);
         galleryGridView = view.findViewById(R.id.galleryGridView);
-        int iDisplayWidth = getResources().getDisplayMetrics().widthPixels;
         Resources resources = getActivity().getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
+        int iDisplayWidth = metrics.widthPixels;
         float dp = iDisplayWidth / (metrics.densityDpi / 160f);
 
         if (dp < 360) {
@@ -52,8 +50,9 @@ public class GalleryFragment extends Fragment {
             galleryGridView.setColumnWidth(Math.round(px));
         }
 
+        adapter = new SingleAlbumAdapter(view.getContext(), imageList);
+        galleryGridView.setAdapter(adapter);
         new LoadImagesTask(imageList, adapter, galleryGridView, getFragmentManager()).execute();
-        adapter.notifyDataSetChanged();
         return view;
     }
 }

@@ -46,10 +46,10 @@ public class LoadImagesTask extends AsyncTask<String, Void, Void> {
 
     @Override
     protected Void doInBackground(String... args) {
-        File directory = new File(Environment.getExternalStorageDirectory(), Persists.IMAGE_DIRECTORY);
+        File directory = new File(Environment.getExternalStorageDirectory(), Persists.APP_IMAGES_STORAGE_DIR_PATH);
         if (directory.exists()) {
             for (String fname : directory.list()) {
-                String path = Environment.getExternalStorageDirectory() + File.separator + Persists.IMAGE_DIRECTORY + File.separator + File.separator + fname;
+                String path = Environment.getExternalStorageDirectory() + File.separator + Persists.APP_IMAGES_STORAGE_DIR_PATH + File.separator + File.separator + fname;
                 imageList.add(path);
             }
         }
@@ -58,15 +58,14 @@ public class LoadImagesTask extends AsyncTask<String, Void, Void> {
 
     @Override
     protected void onPostExecute(Void v) {
-        galleryGridView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         galleryGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    final int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 GalleryPreviewFragment galleryPreviewFragment = new GalleryPreviewFragment();
                 Bundle args = new Bundle();
                 args.putString(Persists.SELECTED_MOZAIK_PATH, imageList.get(+position));
                 galleryPreviewFragment.setArguments(args);
-                fragmentManager.beginTransaction().replace(R.id.currentFragment, galleryPreviewFragment);
+                fragmentManager.beginTransaction().replace(R.id.currentFragment, galleryPreviewFragment).commit();
             }
         });
     }

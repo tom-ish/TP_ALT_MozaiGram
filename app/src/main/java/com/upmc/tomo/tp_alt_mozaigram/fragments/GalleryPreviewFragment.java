@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import java.io.File;
  */
 
 public class GalleryPreviewFragment extends Fragment {
+    final static String TAG = GalleryPreviewFragment.class.getSimpleName();
+
     ImageView GalleryPreviewImg;
     String path;
 
@@ -28,7 +31,8 @@ public class GalleryPreviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_gallery_preview, container, false);
-        path = savedInstanceState.getString(Persists.SELECTED_MOZAIK_PATH);
+        path = getArguments().getString(Persists.SELECTED_MOZAIK_PATH);
+        Log.e(TAG, path);
         GalleryPreviewImg = view.findViewById(R.id.GalleryPreviewImg);
         Glide.with(getActivity())
                 .load(new File(path)) // Uri of the picture

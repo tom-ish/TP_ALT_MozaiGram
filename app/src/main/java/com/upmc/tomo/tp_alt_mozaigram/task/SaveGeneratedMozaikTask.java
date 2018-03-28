@@ -3,9 +3,15 @@ package com.upmc.tomo.tp_alt_mozaigram.task;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.util.Log;
 
+import com.upmc.tomo.tp_alt_mozaigram.persists.Persists;
 import com.upmc.tomo.tp_alt_mozaigram.utils.Tools;
+import com.upmc.tomo.tp_alt_mozaigram.utils.Utils;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by Tomo on 27/03/2018.
@@ -33,6 +39,6 @@ public class SaveGeneratedMozaikTask extends AsyncTask<Bitmap, Void, String> {
 
     @Override
     protected String doInBackground(Bitmap... bitmaps) {
-        return  Tools.saveToInternalStorage(bitmaps[0], context);
+        return  Tools.saveToExternalStorage(bitmaps[0], context);
     }
 }
