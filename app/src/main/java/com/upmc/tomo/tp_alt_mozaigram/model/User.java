@@ -54,6 +54,14 @@ public class User {
             this.friendRequests.add(imageURLs.getString(i));
     }
 
+    public User(String username, String sessionKey) {
+        this.username = username;
+        this.sessionKey = sessionKey;
+        this.imageURLs = new ArrayList<String>();
+        this.friendsUsername = new ArrayList<String>();
+        this.friendRequests = new ArrayList<String>();
+    }
+
     public String getUsername() { return this.username; }
     public String getSessionKey() { return this.sessionKey; }
     public List<String> getImageURLs() { return this.imageURLs; }

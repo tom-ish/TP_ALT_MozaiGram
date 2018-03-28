@@ -24,7 +24,7 @@ import java.util.HashMap;
  */
 
 public class Utils {
-
+    static final String TAG = Utils.class.getSimpleName();
     public static  boolean hasPermissions(Context context, String... permissions) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
             for (String permission : permissions) {
@@ -57,7 +57,7 @@ public class Utils {
             {
                 //Bitmap mBitmap = BitmapFactory.decodeFile(path.getPath()+"/"+ fileNames[i]);
                 ///Now set this bitmap on imageview
-                Log.i("GalleryActivity",fileNames.get(i));
+                Log.i(TAG,fileNames.get(i));
             }
         }
         return  fileNames;

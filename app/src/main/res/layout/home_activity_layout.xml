@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/home_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorAccent"/>
+
+
+    <TextView
+        android:id="@+id/presentation_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/home_image"
+        android:text="@string/app_description"/>
+
+    <LinearLayout
+        android:id="@+id/fragmentSwitcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/presentation_label">
+
+        <Button
+            android:id="@+id/mozaikGenerationFragmentButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/mozaik_generation" />
+
+        <Button
+            android:id="@+id/mozaikGalleryFragmentButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_toRightOf="@id/mozaikGenerationFragmentButton"
+            android:layout_alignTop="@id/mozaikGenerationFragmentButton"
+            android:layout_alignBottom="@id/mozaikGenerationFragmentButton"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/mozaik_gallery"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/currentFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fragmentSwitcher"
+        class="com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment"/>
+
+</RelativeLayout>
