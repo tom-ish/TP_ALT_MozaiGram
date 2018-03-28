@@ -28,7 +28,6 @@ public class HomeActivity extends AppCompatActivity {
     @FragmentById
     Fragment currentFragment;
 
-
     FragmentManager fragmentManager;
 
     DisplayState displayedFragment;

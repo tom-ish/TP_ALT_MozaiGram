@@ -44,6 +44,7 @@ public class GenerateMozaikTask extends AsyncTask<Bitmap, Void, Bitmap> {
         this.mozaikContentImageView.setVisibility(VISIBLE);
         this.saveGeneratedMozaikButton.setVisibility(VISIBLE);
         this.generateMozaikButton.setVisibility(GONE);
+
         Log.e(TAG, "bitmap : [" + bitmap.getWidth() + "," + bitmap.getHeight() + "]");
     }
 

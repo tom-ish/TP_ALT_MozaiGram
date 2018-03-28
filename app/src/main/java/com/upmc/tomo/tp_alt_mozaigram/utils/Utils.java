@@ -64,6 +64,8 @@ public class Utils {
     }
 
     public static void moveFile(File file, File dir) throws IOException {
+        if(!dir.exists())
+            dir.mkdir();
         File newFile = new File(dir, file.getName());
         FileChannel outputChannel = null;
         FileChannel inputChannel = null;

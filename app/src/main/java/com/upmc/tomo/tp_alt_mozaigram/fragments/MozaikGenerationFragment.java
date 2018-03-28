@@ -191,8 +191,6 @@ public class MozaikGenerationFragment extends Fragment {
                 try {
                     Uri uri = data.getData();
                     bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(uri));
-                    // bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-                    // Log.d(TAG, String.valueOf(bitmap));
                     Log.e(TAG, uri.getPath());
                     pickedImage.setImageBitmap(bitmap);
                 } catch (IOException e) {
@@ -203,14 +201,6 @@ public class MozaikGenerationFragment extends Fragment {
             if (mCurrentPhotoPath != "") {
                 bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
                 pickedImage.setImageBitmap(bitmap);
-                File photo = new File(mCurrentPhotoPath);
-                File storageDir = new File(Environment.getExternalStorageDirectory(), Persists.IMAGE_DIRECTORY);
-
-                try {
-                    Utils.moveFile(photo, storageDir);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         }
         generateMozaikButton.setVisibility(VISIBLE);
