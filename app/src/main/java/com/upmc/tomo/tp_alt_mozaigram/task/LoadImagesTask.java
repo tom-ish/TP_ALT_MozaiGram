@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -24,6 +25,7 @@ import java.util.List;
  */
 
 public class LoadImagesTask extends AsyncTask<String, Void, Void> {
+    static final String TAG = LoadImagesTask.class.getSimpleName();
 
     Context context;
     FragmentManager fragmentManager;
@@ -49,7 +51,7 @@ public class LoadImagesTask extends AsyncTask<String, Void, Void> {
         File directory = new File(Environment.getExternalStorageDirectory(), Persists.APP_IMAGES_STORAGE_DIR_PATH);
         if (directory.exists()) {
             for (String fname : directory.list()) {
-                String path = Environment.getExternalStorageDirectory() + File.separator + Persists.APP_IMAGES_STORAGE_DIR_PATH + File.separator + File.separator + fname;
+                String path = Environment.getExternalStorageDirectory() + File.separator + Persists.APP_IMAGES_STORAGE_DIR_PATH + File.separator + fname;
                 imageList.add(path);
             }
         }
@@ -61,6 +63,8 @@ public class LoadImagesTask extends AsyncTask<String, Void, Void> {
         adapter.notifyDataSetChanged();
         galleryGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                Log.e(TAG, imageList.get(+position));
+                Log.e(TAG, imageList.get(position));
                 GalleryPreviewFragment galleryPreviewFragment = new GalleryPreviewFragment();
                 Bundle args = new Bundle();
                 args.putString(Persists.SELECTED_MOZAIK_PATH, imageList.get(+position));

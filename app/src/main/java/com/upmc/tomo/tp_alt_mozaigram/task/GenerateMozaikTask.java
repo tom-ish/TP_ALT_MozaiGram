@@ -16,22 +16,24 @@ import static android.view.View.*;
 
 public class GenerateMozaikTask extends AsyncTask<Bitmap, Void, Bitmap> {
     static final String TAG = GenerateMozaikTask.class.getSimpleName();
-    static final double GRAIN_PERCENT = 0.075;
+    static final double GRAIN_PERCENT = 0.01;
 
     Bitmap image;
     ImageView originalBitmapImageView, mozaikContentImageView;
     Button generateMozaikButton, saveGeneratedMozaikButton;
+    double grain;
 
-    public GenerateMozaikTask(ImageView originalBitmapImageView, ImageView mozaikContentImageView, Button generateMozaikButton, Button saveGeneratedMozaikButton) {
+    public GenerateMozaikTask(ImageView originalBitmapImageView, ImageView mozaikContentImageView, Button generateMozaikButton, Button saveGeneratedMozaikButton, double grain) {
         this.originalBitmapImageView = originalBitmapImageView;
         this.mozaikContentImageView = mozaikContentImageView;
         this.generateMozaikButton = generateMozaikButton;
         this.saveGeneratedMozaikButton = saveGeneratedMozaikButton;
+        this.grain = grain;
     }
 
     @Override
     protected Bitmap doInBackground(Bitmap... bitmaps) {
-        return MozaikGenerator.getMosaicsBitmaps(bitmaps[0], GRAIN_PERCENT);
+        return MozaikGenerator.getMosaicsBitmaps(bitmaps[0], grain);
     }
 
 

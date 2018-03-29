@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.upmc.tomo.tp_alt_mozaigram.fragments.GalleryFragment;
-import com.upmc.tomo.tp_alt_mozaigram.fragments.ImageGridFragment;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment_;
 import com.upmc.tomo.tp_alt_mozaigram.model.DisplayState;

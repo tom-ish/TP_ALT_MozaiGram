@@ -20,6 +20,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.upmc.tomo.tp_alt_mozaigram.R;
 import com.upmc.tomo.tp_alt_mozaigram.persists.Persists;
@@ -30,6 +32,9 @@ import com.upmc.tomo.tp_alt_mozaigram.utils.Utils;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.SeekBarProgressChange;
+import org.androidannotations.annotations.SeekBarTouchStart;
+import org.androidannotations.annotations.SeekBarTouchStop;
 import org.androidannotations.annotations.ViewById;
 
 import java.io.File;
@@ -58,9 +63,14 @@ public class MozaikGenerationFragment extends Fragment {
     @ViewById
     ImageView pickedImage, mozaikImage;
 
+    @ViewById
+    SeekBar mozaikGrainSeekbar;
+
     Bitmap bitmap, generatedMozaik;
 
     String mCurrentPhotoPath;
+
+    double grain;
 
     @AfterViews
     public void afterViews() {
@@ -158,7 +168,7 @@ public class MozaikGenerationFragment extends Fragment {
     @Click
     public void generateMozaikButton() {
         try {
-            this.generatedMozaik = new GenerateMozaikTask(pickedImage, mozaikImage, generateMozaikButton, saveGeneratedMozaikButton).execute(bitmap).get();
+            this.generatedMozaik = new GenerateMozaikTask(pickedImage, mozaikImage, generateMozaikButton, saveGeneratedMozaikButton, grain).execute(bitmap).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -207,5 +217,20 @@ public class MozaikGenerationFragment extends Fragment {
         saveGeneratedMozaikButton.setVisibility(GONE);
     }
 
+    @SeekBarProgressChange(R.id.mozaikGrainSeekbar)
+    public void onProgressChangeOnMozaikGrainSeekbar (SeekBar seekBar, int progress, boolean fromUser) {
+        grain = (seekBar.getMax()-progress)/1000.0;
+    }
+
+    @SeekBarTouchStart(R.id.mozaikGrainSeekbar)
+    public void onTouchStartMozaikGrainSeekbar () {
+
+    }
+
+    @SeekBarTouchStop(R.id.mozaikGrainSeekbar)
+    public void onTouchStopMozaikGrainSeekbar () {
+        Toast.makeText(getActivity(), "Seek bar progress is :" + grain,
+                Toast.LENGTH_SHORT).show();
+    }
 
 }

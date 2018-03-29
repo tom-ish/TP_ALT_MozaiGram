@@ -15,14 +15,13 @@
 
     <SeekBar
         android:id="@+id/mozaikGrainSeekbar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/chooseOrTakeBtn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="77dp"
-        android:max="10"
-        android:progress="3"
+        android:max="100"
+        android:progress="5"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" />
 
