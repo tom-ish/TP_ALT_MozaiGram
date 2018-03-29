@@ -69,7 +69,10 @@ public class LoadImagesTask extends AsyncTask<String, Void, Void> {
                 Bundle args = new Bundle();
                 args.putString(Persists.SELECTED_MOZAIK_PATH, imageList.get(+position));
                 galleryPreviewFragment.setArguments(args);
-                fragmentManager.beginTransaction().replace(R.id.currentFragment, galleryPreviewFragment).commit();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.currentFragment, galleryPreviewFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }
