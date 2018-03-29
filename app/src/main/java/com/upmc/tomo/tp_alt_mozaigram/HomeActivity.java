@@ -40,7 +40,10 @@ public class HomeActivity extends AppCompatActivity {
     public void afterViews() {
         this.fragmentManager = getFragmentManager();
         MozaikGenerationFragment mozaikGenerationFragment = new MozaikGenerationFragment_();
-        this.fragmentManager.beginTransaction().replace(R.id.currentFragment, mozaikGenerationFragment).commit();
+        this.fragmentManager.beginTransaction()
+                .replace(R.id.currentFragment, mozaikGenerationFragment)
+                .addToBackStack(null)
+                .commit();
         this.displayedFragment = DisplayState.GENERATOR;
     }
 
@@ -50,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
             MozaikGenerationFragment mozaikGenerationFragment = new MozaikGenerationFragment_();
             this.fragmentManager.beginTransaction()
                     .replace(R.id.currentFragment, mozaikGenerationFragment)
+                    .addToBackStack(null)
                     .commit();
             this.displayedFragment = DisplayState.GENERATOR;
         }
@@ -61,9 +65,20 @@ public class HomeActivity extends AppCompatActivity {
             GalleryFragment mozaikGalleryFragment = new GalleryFragment();
             this.fragmentManager.beginTransaction()
                     .replace(R.id.currentFragment, mozaikGalleryFragment)
+                    .addToBackStack(null)
                     .commit();
             this.displayedFragment = DisplayState.GALLERY;
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        int count = getFragmentManager().getBackStackEntryCount();
+        if(count == 0) {
+            super.onBackPressed();
+        }
+        else {
+            getFragmentManager().popBackStack();
+        }
+    }
 }

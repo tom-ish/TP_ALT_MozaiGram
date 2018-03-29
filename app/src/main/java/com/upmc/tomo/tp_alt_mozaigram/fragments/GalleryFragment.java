@@ -55,4 +55,6 @@ public class GalleryFragment extends Fragment {
         new LoadImagesTask(imageList, adapter, galleryGridView, getFragmentManager()).execute();
         return view;
     }
+
+
 }
