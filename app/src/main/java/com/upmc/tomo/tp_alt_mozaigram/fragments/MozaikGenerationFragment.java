@@ -108,10 +108,9 @@ public class MozaikGenerationFragment extends Fragment {
     }
 
     public void choosePhotoFromGallery() {
-        Intent intent = new Intent();
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         // Show only images, no videos or anything else
         intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), Persists.GALLERY);
     }
 
@@ -184,9 +183,8 @@ public class MozaikGenerationFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_CANCELED) return;
-        if (resultCode == Persists.GALLERY) {
+        if (requestCode == RESULT_CANCELED) return;
+        else if (requestCode == Persists.GALLERY) {
             if (data != null && data.getData() != null) {
                 try {
                     Uri uri = data.getData();
