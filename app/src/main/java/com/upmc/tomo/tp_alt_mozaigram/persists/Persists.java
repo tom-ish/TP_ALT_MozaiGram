@@ -12,6 +12,9 @@ public class Persists {
     public static final String APP_SIGNATURE = "mozaik_";
     public static final String IMG_EXTENSION = ".jpg";
     public static final String SELECTED_MOZAIK_PATH = "path";
+    public static final Integer PERMISSIONS = 200;
+    public static final Integer CAMERA = 10;
+    public static final Integer GALLERY = 20;
 
     public static String REQUEST_TAG = "com.upmc.tomo.TP_ALT_MozaiGram";
     public static User currentUser;

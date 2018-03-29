@@ -8,16 +8,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -44,7 +38,6 @@ import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
 import static android.view.View.*;
 
 /**
@@ -54,9 +47,6 @@ import static android.view.View.*;
 @EFragment(R.layout.mozaik_generation_fragment_layout)
 public class MozaikGenerationFragment extends Fragment {
     static final String TAG = MozaikGenerationFragment.class.getSimpleName();
-    static final Integer PERMISSIONS = 200;
-    static final Integer CAMERA = 10;
-    static final Integer GALLERY = 20;
 
     @ViewById
     Button chooseOrTakeBtn, generateMozaikButton, saveGeneratedMozaikButton;
@@ -87,7 +77,7 @@ public class MozaikGenerationFragment extends Fragment {
 
         String[] permissions_tab = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
         if (!Utils.hasPermissions(getActivity(), permissions_tab)) {
-            ActivityCompat.requestPermissions(getActivity(), permissions_tab, PERMISSIONS);
+            ActivityCompat.requestPermissions(getActivity(), permissions_tab, Persists.PERMISSIONS);
         } else {
             showPictureDialog();
         }
@@ -122,7 +112,7 @@ public class MozaikGenerationFragment extends Fragment {
         // Show only images, no videos or anything else
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), Persists.PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), Persists.GALLERY);
     }
 
     public void takePhotoFromCamera() {
@@ -144,7 +134,7 @@ public class MozaikGenerationFragment extends Fragment {
                         "com.example.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, CAMERA);
+                startActivityForResult(takePictureIntent, Persists.CAMERA);
             }
         }
     }
@@ -196,7 +186,7 @@ public class MozaikGenerationFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_CANCELED) return;
-        if (resultCode == GALLERY) {
+        if (resultCode == Persists.GALLERY) {
             if (data != null && data.getData() != null) {
                 try {
                     Uri uri = data.getData();
@@ -207,7 +197,7 @@ public class MozaikGenerationFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
-        } else if (requestCode == CAMERA) {
+        } else if (requestCode == Persists.CAMERA) {
             if (mCurrentPhotoPath != "") {
                 bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
                 pickedImage.setImageBitmap(bitmap);
