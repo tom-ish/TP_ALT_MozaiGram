@@ -32,11 +32,12 @@ public class GalleryPreviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_gallery_preview, container, false);
         path = getArguments().getString(Persists.SELECTED_MOZAIK_PATH);
+        Log.e(TAG, "trying to display " + path);
         Log.e(TAG, path);
         GalleryPreviewImg = view.findViewById(R.id.GalleryPreviewImg);
-        Glide.with(getActivity())
+        Glide.with(this)
                 .load(new File(path)) // Uri of the picture
                 .into(GalleryPreviewImg);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
     }
 }
