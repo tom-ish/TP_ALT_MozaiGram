@@ -17,4 +17,10 @@
     <string name="action_settings">Param\u00e8tres</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="welcome_txt">Bienvenue sur MozaiGram !</string>
+
+    <string name="msg_delete_picture">Image supprimée !</string>
+    <string name="title_progress_dialog">Remplacer le fond d\'écran</string>
+    <string name="choose_action">Choisir une action</string>
+    <string name="delete_option">Effacer l\'image</string>
+    <string name="wallpaper_option">Remplacer le fond d\'écran</string>
 </resources>
