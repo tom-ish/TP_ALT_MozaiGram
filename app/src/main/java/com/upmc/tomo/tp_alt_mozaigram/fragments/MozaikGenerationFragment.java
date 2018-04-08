@@ -207,6 +207,7 @@ public class MozaikGenerationFragment extends Fragment {
                     pickedImage.setImageBitmap(bitmap);
                     generateMozaikButton.setVisibility(VISIBLE);
                     saveGeneratedMozaikButton.setVisibility(GONE);
+                    pictureDialog.dismiss();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -217,6 +218,7 @@ public class MozaikGenerationFragment extends Fragment {
                 pickedImage.setImageBitmap(bitmap);
                 generateMozaikButton.setVisibility(VISIBLE);
                 saveGeneratedMozaikButton.setVisibility(GONE);
+                pictureDialog.dismiss();
             }
         }
     }
