@@ -14,4 +14,11 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="welcome_txt">Welcome to MozaiGram !</string>
     <string name="ok">Ok</string>
+
+    <string name="msg_delete_picture">Picture deleted !</string>
+    <string name="title_progress_dialog">Setting new Wallpaper</string>
+    <string name="choose_action">Choose action</string>
+    <string name="delete_option">Delete the picture</string>
+    <string name="wallpaper_option">Set new Wallpaper</string>
+
 </resources>
