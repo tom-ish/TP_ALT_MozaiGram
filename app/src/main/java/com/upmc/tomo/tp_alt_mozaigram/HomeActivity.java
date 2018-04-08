@@ -1,17 +1,17 @@
 package com.upmc.tomo.tp_alt_mozaigram;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
+import com.upmc.tomo.tp_alt_mozaigram.bridge.IFragmentInteractionListener;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.GalleryFragment;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment_;
@@ -28,7 +28,8 @@ import org.androidannotations.annotations.ViewById;
  */
 
 @EActivity(R.layout.home_activity_layout)
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements IFragmentInteractionListener {
+    final static String TAG = HomeActivity.class.getSimpleName();
 
     @FragmentById
     Fragment currentFragment;
@@ -53,7 +54,9 @@ public class HomeActivity extends AppCompatActivity {
     @AfterViews
     public void afterViews() {
         displayDescriptionDialog();
-        this.fragmentManager = getFragmentManager();
+        fragmentManager = getFragmentManager();
+
+
         MozaikGenerationFragment mozaikGenerationFragment = new MozaikGenerationFragment_();
         this.fragmentManager.beginTransaction()
                 .replace(R.id.currentFragment, mozaikGenerationFragment)
@@ -66,12 +69,11 @@ public class HomeActivity extends AppCompatActivity {
     public void mozaikGenerationFragmentButton() {
         if(displayedFragment != DisplayState.GENERATOR) {
             MozaikGenerationFragment mozaikGenerationFragment = new MozaikGenerationFragment_();
-            this.fragmentManager.beginTransaction()
+            fragmentManager.beginTransaction()
                     .replace(R.id.currentFragment, mozaikGenerationFragment)
                     .addToBackStack(null)
                     .commit();
             updateState(DisplayState.GENERATOR);
-
         }
     }
 
@@ -79,11 +81,10 @@ public class HomeActivity extends AppCompatActivity {
     public void mozaikGalleryFragmentButton() {
         if(displayedFragment != DisplayState.GALLERY) {
             GalleryFragment mozaikGalleryFragment = new GalleryFragment();
-            this.fragmentManager.beginTransaction()
+            fragmentManager.beginTransaction()
                     .replace(R.id.currentFragment, mozaikGalleryFragment)
                     .addToBackStack(null)
                     .commit();
-            this.displayedFragment = DisplayState.GALLERY;
             updateState(DisplayState.GALLERY);
         }
     }
@@ -124,12 +125,17 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        int count = getFragmentManager().getBackStackEntryCount();
+        int count = fragmentManager.getBackStackEntryCount();
         if(count == 0) {
             super.onBackPressed();
         }
         else {
-            getFragmentManager().popBackStack();
+            fragmentManager.popBackStack();
         }
+    }
+
+    @Override
+    public void onDataPass(DisplayState state) {
+        updateState(state);
     }
 }

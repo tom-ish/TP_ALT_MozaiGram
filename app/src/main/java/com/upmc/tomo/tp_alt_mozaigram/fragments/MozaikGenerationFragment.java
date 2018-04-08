@@ -3,6 +3,7 @@ package com.upmc.tomo.tp_alt_mozaigram.fragments;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,6 +21,8 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.upmc.tomo.tp_alt_mozaigram.R;
+import com.upmc.tomo.tp_alt_mozaigram.bridge.IFragmentInteractionListener;
+import com.upmc.tomo.tp_alt_mozaigram.model.DisplayState;
 import com.upmc.tomo.tp_alt_mozaigram.persists.Persists;
 import com.upmc.tomo.tp_alt_mozaigram.task.GenerateMozaikTask;
 import com.upmc.tomo.tp_alt_mozaigram.task.SaveGeneratedMozaikTask;
@@ -64,10 +67,13 @@ public class MozaikGenerationFragment extends Fragment {
 
     String mCurrentPhotoPath;
 
+    IFragmentInteractionListener fragmentInteractionListener;
+
     double grain;
 
     @AfterViews
     public void afterViews() {
+        passData(DisplayState.GENERATOR);
         generateMozaikButton.setVisibility(GONE);
         saveGeneratedMozaikButton.setVisibility(GONE);
         grain = mozaikGrainSeekbar.getProgress()/1000.0;
@@ -229,6 +235,28 @@ public class MozaikGenerationFragment extends Fragment {
     public void onTouchStopMozaikGrainSeekbar () {
         Toast.makeText(getActivity(), "Seek bar progress is :" + grain,
                 Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof IFragmentInteractionListener) {
+            fragmentInteractionListener = (IFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        fragmentInteractionListener = null;
+    }
+
+    public void passData(DisplayState state) {
+        fragmentInteractionListener.onDataPass(state);
     }
 
 }

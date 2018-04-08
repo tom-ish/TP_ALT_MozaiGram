@@ -18,6 +18,8 @@ public class Persists {
     public static final Integer CAMERA = 10;
     public static final Integer GALLERY = 20;
 
+    public static final String GENERATE_MOZAIK_FRAGMENT_TAG = "MozaikGenerationFragment";
+    public static final String GALLERY_FRAGMENT_TAG = "GalleryFragment";
 
     public static String REQUEST_TAG = "com.upmc.tomo.TP_ALT_MozaiGram";
     public static User currentUser;

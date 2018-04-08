@@ -4,8 +4,8 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.app.WallpaperManager;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,7 +13,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +22,12 @@ import android.widget.Toast;
 
 import com.upmc.tomo.tp_alt_mozaigram.R;
 import com.upmc.tomo.tp_alt_mozaigram.adapter.SingleAlbumAdapter;
-import com.upmc.tomo.tp_alt_mozaigram.persists.Persists;
+import com.upmc.tomo.tp_alt_mozaigram.bridge.IFragmentInteractionListener;
+import com.upmc.tomo.tp_alt_mozaigram.model.DisplayState;
 import com.upmc.tomo.tp_alt_mozaigram.task.LoadImagesTask;
 import com.upmc.tomo.tp_alt_mozaigram.utils.Utils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -44,6 +43,8 @@ public class GalleryFragment extends Fragment {
     SingleAlbumAdapter adapter;
     ProgressDialog progress;
 
+    IFragmentInteractionListener fragmentInteractionListener;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,7 @@ public class GalleryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        passData(DisplayState.GALLERY);
         View view = inflater.inflate(R.layout.activity_gallery, container, false);
         galleryGridView = view.findViewById(R.id.galleryGridView);
         Resources resources = getActivity().getResources();
@@ -130,5 +132,27 @@ public class GalleryFragment extends Fragment {
         });
 
         return view;
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof IFragmentInteractionListener) {
+            fragmentInteractionListener = (IFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        fragmentInteractionListener = null;
+    }
+
+    public void passData(DisplayState state) {
+        fragmentInteractionListener.onDataPass(state);
     }
 }
