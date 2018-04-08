@@ -3,19 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/home_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@color/colorAccent"/>
-
-
     <TextView
         android:id="@+id/presentation_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/home_image"
         android:text="@string/app_description"/>
 
     <LinearLayout
@@ -51,6 +42,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/fragmentSwitcher"
-        class="com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment"/>
+        class="com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment">
+
+    <ImageView
+        android:id="@+id/home_image"
+        android:layout_width="320dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorAccent"/>
+    </FrameLayout>
 
 </RelativeLayout>

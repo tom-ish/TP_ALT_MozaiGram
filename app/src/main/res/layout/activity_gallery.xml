@@ -18,7 +18,8 @@
         android:verticalSpacing="5dp"
         android:gravity="center"
         android:stretchMode="columnWidth"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:longClickable="true">
     </GridView>
 
 
