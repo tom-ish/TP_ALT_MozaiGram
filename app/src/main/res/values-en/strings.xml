@@ -1,11 +1,16 @@
 <resources>
-    <string name="app_name">TP_ALT_MozaiGram</string>
+    <string name="app_name">MozaiGram</string>
+    <string name="app_description">Generate a beautiful Mosaic from any picture or image of yours!</string>
+
     <string name="generate_mozaik">Generate Mosaic</string>
     <string name="save_mozaik">Save generated Mosaic</string>
     <string name="mozaik_generation">Mozaik Generator</string>
     <string name="mozaik_gallery">Mozaik Gallery</string>
+    <string name="choose_picture">Choose a picture</string>
 
-    <string name="app_description">Generate a beautiful Mosaic from any picture or image of yours!</string>s
+    <string name="select_photo_from_gallery">Select photo from gallery</string>
+    <string name="take_picture">Capture photo from camera</string>
+
     <string name="title_activity_single_image_row">SingleImageRowActivity</string>
     <string name="title_activity_gallery">GalleryActivity</string>
     <string name="title_activity_gallery_preview">GalleryPreviewActivity</string>
@@ -13,5 +18,4 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="welcome_txt">Welcome to MozaiGram !</string>
-    <string name="ok">Ok</string>
 </resources>

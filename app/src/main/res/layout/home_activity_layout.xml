@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/dark_white">
 
     <ImageView
         android:id="@+id/home_image"
@@ -11,46 +12,69 @@
         android:background="@color/colorAccent"/>
 
 
-    <TextView
-        android:id="@+id/presentation_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/home_image"
-        android:text="@string/app_description"/>
-
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/fragmentSwitcher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/presentation_label">
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/button_margin">
 
         <Button
             android:id="@+id/mozaikGenerationFragmentButton"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@id/dummyCenter"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/button_margin"
+            android:background="@drawable/button_selector"
             android:text="@string/mozaik_generation" />
+
+        <View
+            android:id="@+id/dummyCenter"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@id/mozaikGenerationFragmentButton"
+            android:layout_alignBottom="@id/mozaikGenerationFragmentButton"/>
 
         <Button
             android:id="@+id/mozaikGalleryFragmentButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dummyCenter"
+            android:layout_alignTop="@id/mozaikGenerationFragmentButton"
+            android:layout_alignBottom="@id/mozaikGenerationFragmentButton"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="@dimen/button_margin"
+            android:background="@drawable/button_selector"
+            android:text="@string/mozaik_gallery"/>
+
+        <!--
+        <Button
+            android:id="@+id/tilesBankFragmentButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:layout_toRightOf="@id/mozaikGenerationFragmentButton"
-            android:layout_alignTop="@id/mozaikGenerationFragmentButton"
-            android:layout_alignBottom="@id/mozaikGenerationFragmentButton"
+            android:layout_toRightOf="@id/mozaikGalleryFragmentButton"
+            android:layout_alignTop="@id/mozaikGalleryFragmentButton"
+            android:layout_alignBottom="@id/mozaikGalleryFragmentButton"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="@string/mozaik_gallery"/>
-    </LinearLayout>
+            android:text="@string/tiles_bank"/>
+!-->
+
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/currentFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/fragmentSwitcher"
+        android:layout_marginTop="@dimen/button_margin"
         class="com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment"/>
 
 </RelativeLayout>

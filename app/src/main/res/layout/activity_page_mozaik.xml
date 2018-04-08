@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.upmc.tomo.tp_alt_mozaigram.PageMozaikActivity">
+    android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/wordEditText"
@@ -18,7 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/wordEditText"
-        android:text="Choose a picture"/>
+        android:layout_marginLeft="@dimen/button_margin"
+        android:layout_marginRight="@dimen/button_margin"
+        android:background="@drawable/button_selector"
+        android:text="@string/choose_picture"/>
 
     <Button
 
@@ -26,6 +28,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/chooseOrTakeBtn"
+        android:layout_marginLeft="@dimen/button_margin"
+        android:layout_marginRight="@dimen/button_margin"
+        android:background="@drawable/button_selector"
         android:text="Show Gallery"/>
 
     <ImageView

@@ -2,6 +2,8 @@ package com.upmc.tomo.tp_alt_mozaigram.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.method.SingleLineTransformationMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
  */
 
 public class SingleAlbumAdapter extends BaseAdapter {
+    final static String TAG = SingleAlbumAdapter.class.getSimpleName();
+
     private Context context;
     private ArrayList<String> data;
 
@@ -40,14 +44,20 @@ public class SingleAlbumAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView holder = null;
+        ViewHolder holder = new ViewHolder();
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.activity_single_image_row, parent, false);
-            holder = convertView.findViewById(R.id.galleryImage);
-
+            holder.image = convertView.findViewById(R.id.galleryImage);
+            holder.iconMenu = convertView.findViewById(R.id.iconMenu);
+            holder.iconMenu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.e(TAG, "iconMenu clicked!");
+                }
+            });
             convertView.setTag(holder);
         } else {
-            holder = (ImageView) convertView.getTag();
+            holder = (ViewHolder) convertView.getTag();
         }
 
         String fname = data.get(position);
@@ -55,10 +65,15 @@ public class SingleAlbumAdapter extends BaseAdapter {
 
             Glide.with(context)
                     .load(new File(fname)) // Uri of the picture
-                    .into(holder);
+                    .into(holder.image);
 
         } catch (Exception e) {
         }
         return convertView;
+    }
+
+    static class ViewHolder {
+        ImageView image;
+        ImageView iconMenu;
     }
 }

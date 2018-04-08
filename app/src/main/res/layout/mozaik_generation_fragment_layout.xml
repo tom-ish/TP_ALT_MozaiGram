@@ -11,7 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:text="Choose a picture"/>
+        android:layout_marginLeft="@dimen/button_margin"
+        android:layout_marginRight="@dimen/button_margin"
+        android:background="@drawable/button_selector"
+        android:text="@string/choose_picture"/>
 
     <SeekBar
         android:id="@+id/mozaikGrainSeekbar"
@@ -19,9 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/chooseOrTakeBtn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="77dp"
+        android:layout_marginTop="@dimen/button_margin"
         android:max="100"
-        android:progress="5"
+        android:progress="50"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" />
 
@@ -29,20 +32,26 @@
         android:id="@+id/pickedImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/mozaikGrainSeekbar"/>
+        android:layout_below="@id/mozaikGrainSeekbar"
+        android:layout_margin="@dimen/button_margin"/>
 
     <ImageView
         android:id="@+id/mozaikImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone"/>
+        android:layout_below="@id/mozaikGrainSeekbar"
+        android:layout_margin="@dimen/button_margin"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/generateMozaikButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/button_margin"
+        android:layout_marginLeft="@dimen/button_margin"
+        android:layout_marginRight="@dimen/button_margin"
+        android:background="@drawable/button_selector"
         android:text="@string/generate_mozaik"
         android:visibility="gone"/>
 
@@ -51,6 +60,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/button_margin"
+        android:layout_marginLeft="@dimen/button_margin"
+        android:layout_marginRight="@dimen/button_margin"
+        android:background="@drawable/button_selector"
         android:text="@string/save_mozaik"
         android:visibility="gone"/>
 

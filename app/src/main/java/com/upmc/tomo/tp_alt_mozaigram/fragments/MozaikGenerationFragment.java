@@ -12,6 +12,8 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -66,6 +68,7 @@ public class MozaikGenerationFragment extends Fragment {
     public void afterViews() {
         generateMozaikButton.setVisibility(GONE);
         saveGeneratedMozaikButton.setVisibility(GONE);
+        grain = mozaikGrainSeekbar.getProgress()/1000.0;
     }
 
     @Click
@@ -86,10 +89,12 @@ public class MozaikGenerationFragment extends Fragment {
 
     private void showPictureDialog() {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(getActivity());
-        pictureDialog.setTitle("Select Action");
+        View dialogView = getActivity().getLayoutInflater().inflate(R.layout.custom_picture_dialog, null);
+        dialogView.setBackgroundColor(getResources().getColor(R.color.dark_white));
+        pictureDialog.setView(dialogView);
         String[] pictureDialogItems = {
-                "Select photo from gallery",
-                "Capture photo from camera"};
+                getString(R.string.select_photo_from_gallery),
+                getString(R.string.take_picture)};
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -105,6 +110,7 @@ public class MozaikGenerationFragment extends Fragment {
                     }
                 });
         pictureDialog.show();
+
     }
 
     public void choosePhotoFromGallery() {
@@ -157,7 +163,7 @@ public class MozaikGenerationFragment extends Fragment {
     @Click
     public void generateMozaikButton() {
         try {
-            this.generatedMozaik = new GenerateMozaikTask(pickedImage, mozaikImage, generateMozaikButton, saveGeneratedMozaikButton, grain).execute(bitmap).get();
+            this.generatedMozaik = new GenerateMozaikTask(pickedImage, mozaikImage, generateMozaikButton, saveGeneratedMozaikButton, mozaikGrainSeekbar, grain, getActivity()).execute(bitmap).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -171,6 +177,10 @@ public class MozaikGenerationFragment extends Fragment {
             Log.d(TAG, "storing generated Mozaik to device storage");
             try {
                 String storedMozaikPath = new SaveGeneratedMozaikTask(getActivity().getApplicationContext()).execute(generatedMozaik).get();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.currentFragment, new GalleryFragment())
+                        .addToBackStack(null)
+                        .commit();
                 Log.d(TAG, storedMozaikPath);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -191,6 +201,8 @@ public class MozaikGenerationFragment extends Fragment {
                     bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(uri));
                     Log.e(TAG, uri.getPath());
                     pickedImage.setImageBitmap(bitmap);
+                    generateMozaikButton.setVisibility(VISIBLE);
+                    saveGeneratedMozaikButton.setVisibility(GONE);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -199,10 +211,10 @@ public class MozaikGenerationFragment extends Fragment {
             if (mCurrentPhotoPath != "") {
                 bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
                 pickedImage.setImageBitmap(bitmap);
+                generateMozaikButton.setVisibility(VISIBLE);
+                saveGeneratedMozaikButton.setVisibility(GONE);
             }
         }
-        generateMozaikButton.setVisibility(VISIBLE);
-        saveGeneratedMozaikButton.setVisibility(GONE);
     }
 
     @SeekBarProgressChange(R.id.mozaikGrainSeekbar)

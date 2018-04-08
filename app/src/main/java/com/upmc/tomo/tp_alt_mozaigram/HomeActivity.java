@@ -1,11 +1,16 @@
 package com.upmc.tomo.tp_alt_mozaigram;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.upmc.tomo.tp_alt_mozaigram.fragments.GalleryFragment;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment;
@@ -16,6 +21,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.FragmentById;
+import org.androidannotations.annotations.ViewById;
 
 /**
  * Created by Tomo on 26/03/2018.
@@ -26,6 +32,14 @@ public class HomeActivity extends AppCompatActivity {
 
     @FragmentById
     Fragment currentFragment;
+
+    @ViewById
+    Button mozaikGenerationFragmentButton;
+
+    @ViewById
+    Button mozaikGalleryFragmentButton;
+
+    AlertDialog alertDialog;
 
     FragmentManager fragmentManager;
 
@@ -38,36 +52,73 @@ public class HomeActivity extends AppCompatActivity {
 
     @AfterViews
     public void afterViews() {
+        displayDescriptionDialog();
         this.fragmentManager = getFragmentManager();
         MozaikGenerationFragment mozaikGenerationFragment = new MozaikGenerationFragment_();
         this.fragmentManager.beginTransaction()
                 .replace(R.id.currentFragment, mozaikGenerationFragment)
                 .addToBackStack(null)
                 .commit();
-        this.displayedFragment = DisplayState.GENERATOR;
+        updateState(DisplayState.GENERATOR);
     }
 
     @Click
     public void mozaikGenerationFragmentButton() {
-        if(displayedFragment == DisplayState.GALLERY) {
+        if(displayedFragment != DisplayState.GENERATOR) {
             MozaikGenerationFragment mozaikGenerationFragment = new MozaikGenerationFragment_();
             this.fragmentManager.beginTransaction()
                     .replace(R.id.currentFragment, mozaikGenerationFragment)
                     .addToBackStack(null)
                     .commit();
-            this.displayedFragment = DisplayState.GENERATOR;
+            updateState(DisplayState.GENERATOR);
+
         }
     }
 
     @Click
     public void mozaikGalleryFragmentButton() {
-        if(displayedFragment == DisplayState.GENERATOR) {
+        if(displayedFragment != DisplayState.GALLERY) {
             GalleryFragment mozaikGalleryFragment = new GalleryFragment();
             this.fragmentManager.beginTransaction()
                     .replace(R.id.currentFragment, mozaikGalleryFragment)
                     .addToBackStack(null)
                     .commit();
             this.displayedFragment = DisplayState.GALLERY;
+            updateState(DisplayState.GALLERY);
+        }
+    }
+
+    private void displayDescriptionDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.custom_alert_dialog, null);
+        dialogView.findViewById(R.id.welcomeOkButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+        dialogBuilder.setView(dialogView);
+        View welcomeHeader = inflater.inflate(R.layout.welcome_header, null);
+
+        alertDialog = dialogBuilder.create();
+        alertDialog.setTitle(getString(R.string.welcome_txt));
+        alertDialog.setMessage(getString(R.string.app_description));
+        alertDialog.setCustomTitle(welcomeHeader);
+        alertDialog.setContentView(dialogView);
+        alertDialog.show();
+    }
+
+
+    private void updateState(DisplayState state) {
+        this.displayedFragment = state;
+        if(state == DisplayState.GENERATOR) {
+            mozaikGenerationFragmentButton.setBackground(getResources().getDrawable(R.drawable.button_pressed));
+            mozaikGalleryFragmentButton.setBackground(getResources().getDrawable(R.drawable.button_normal));
+        }
+        else if(state == DisplayState.GALLERY) {
+            mozaikGalleryFragmentButton.setBackground(getResources().getDrawable(R.drawable.button_pressed));
+            mozaikGenerationFragmentButton.setBackground(getResources().getDrawable(R.drawable.button_normal));
         }
     }
 

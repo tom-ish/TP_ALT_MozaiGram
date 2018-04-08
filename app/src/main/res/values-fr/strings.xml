@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MozaiGram</string>
+    <string name="app_description">Prenez une photo, g\u00e9n\u00e9rez une mosa\u00efque de cette image, et partagez-la \u00e0 tous vos amis ou utilisez-la en tant que fond d\'\u00e9cran !</string>
+    <string name="generate_mozaik">G\u00e9n\u00e9rer la mosa\u00efque</string>
+    <string name="save_mozaik">Sauvegarder la mosa\u00efque g\u00e9n\u00e9r\u00e9e</string>
+    <string name="mozaik_generation">G\u00e9n\u00e9rateur de mosa\u00efque</string>
+    <string name="mozaik_gallery">Galerie de Mosa\u00efque</string>
+    <string name="choose_picture">Choisissez l\'image</string>
+
+    <string name="select_photo_from_gallery">Selectionnez une image depuis votre galerie</string>
+    <string name="take_picture">Prenez une photo depuis votre cam\u00e9ra</string>
+
+    <string name="title_activity_single_image_row">SingleImageRowActivity</string>
+    <string name="title_activity_gallery">GalleryActivity</string>
+    <string name="title_activity_gallery_preview">GalleryPreviewActivity</string>
+    <string name="title_activity_main_tab">MainTabActivity</string>
+    <string name="action_settings">Param\u00e8tres</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="welcome_txt">Bienvenue sur MozaiGram !</string>
+</resources>
