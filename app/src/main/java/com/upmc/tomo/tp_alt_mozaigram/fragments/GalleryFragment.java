@@ -74,10 +74,10 @@ public class GalleryFragment extends Fragment {
                                            final int index, long arg3) {
 
                 AlertDialog.Builder pictureDialog = new AlertDialog.Builder(getActivity());
-                pictureDialog.setTitle("Choose action");
+                pictureDialog.setTitle(getString(R.string.choose_action));
                 String[] pictureDialogItems = {
-                        "Delete the picture",
-                        "Set new Wallpaper"};
+                        getString(R.string.delete_option),
+                        getString(R.string.wallpaper_option)};
                 pictureDialog.setItems(pictureDialogItems,
                         new DialogInterface.OnClickListener() {
                             @Override
@@ -93,13 +93,14 @@ public class GalleryFragment extends Fragment {
                                         }
                                         if (deleted) {
                                             adapter.notifyDataSetChanged();
-                                            Toast.makeText(getActivity(), "Picture deleted !", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), getString(R.string.msg_delete_picture), Toast.LENGTH_SHORT).show();
                                         }
                                         break;
                                     case 1:
 
                                         progress = new ProgressDialog(getActivity());
-                                        progress.setMessage("Setting new Wallpaper");
+
+                                        progress.setMessage(getString(R.string.title_progress_dialog));
                                         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                                         progress.show();
 

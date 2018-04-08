@@ -5,5 +5,5 @@ package com.upmc.tomo.tp_alt_mozaigram.model;
  */
 
 public enum DisplayState {
-    GENERATOR, GALLERY
+    GENERATOR, TILES_BANK, GALLERY
 }

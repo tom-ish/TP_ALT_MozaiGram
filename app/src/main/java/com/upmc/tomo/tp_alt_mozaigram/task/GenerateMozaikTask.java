@@ -1,10 +1,12 @@
 package com.upmc.tomo.tp_alt_mozaigram.task;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 
 import com.upmc.tomo.tp_alt_mozaigram.mozaik_process.MozaikGenerator;
 
@@ -21,13 +23,17 @@ public class GenerateMozaikTask extends AsyncTask<Bitmap, Void, Bitmap> {
     Bitmap image;
     ImageView originalBitmapImageView, mozaikContentImageView;
     Button generateMozaikButton, saveGeneratedMozaikButton;
+    SeekBar seekbar;
     double grain;
+    Context context;
 
-    public GenerateMozaikTask(ImageView originalBitmapImageView, ImageView mozaikContentImageView, Button generateMozaikButton, Button saveGeneratedMozaikButton, double grain) {
+    public GenerateMozaikTask(ImageView originalBitmapImageView, ImageView mozaikContentImageView, Button generateMozaikButton, Button saveGeneratedMozaikButton, SeekBar seekbar, double grain, Context context) {
+        this.context = context;
         this.originalBitmapImageView = originalBitmapImageView;
         this.mozaikContentImageView = mozaikContentImageView;
         this.generateMozaikButton = generateMozaikButton;
         this.saveGeneratedMozaikButton = saveGeneratedMozaikButton;
+        this.seekbar = seekbar;
         this.grain = grain;
     }
 
@@ -46,6 +52,7 @@ public class GenerateMozaikTask extends AsyncTask<Bitmap, Void, Bitmap> {
         this.mozaikContentImageView.setVisibility(VISIBLE);
         this.saveGeneratedMozaikButton.setVisibility(VISIBLE);
         this.generateMozaikButton.setVisibility(GONE);
+        this.seekbar.setVisibility(GONE);
 
         Log.e(TAG, "bitmap : [" + bitmap.getWidth() + "," + bitmap.getHeight() + "]");
     }
