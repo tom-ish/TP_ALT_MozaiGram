@@ -7,7 +7,7 @@
     <string name="mozaik_gallery">Galerie de Mosa\u00efque</string>
     <string name="choose_picture">Choisissez l\'image</string>
 
-    <string name="select_photo_from_gallery">Selectionnez une image depuis votre galerie</string>
+    <string name="select_photo_from_gallery">Choisir une image depuis ma galerie</string>
     <string name="take_picture">Prenez une photo depuis votre cam\u00e9ra</string>
 
     <string name="title_activity_single_image_row">SingleImageRowActivity</string>

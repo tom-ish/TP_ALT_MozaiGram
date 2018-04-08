@@ -58,6 +58,8 @@ public class MozaikGenerationFragment extends Fragment {
     @ViewById
     SeekBar mozaikGrainSeekbar;
 
+    AlertDialog pictureDialog;
+
     Bitmap bitmap, generatedMozaik;
 
     String mCurrentPhotoPath;
@@ -88,27 +90,23 @@ public class MozaikGenerationFragment extends Fragment {
     }
 
     private void showPictureDialog() {
-        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         View dialogView = getActivity().getLayoutInflater().inflate(R.layout.custom_picture_dialog, null);
-        dialogView.setBackgroundColor(getResources().getColor(R.color.dark_white));
-        pictureDialog.setView(dialogView);
-        String[] pictureDialogItems = {
-                getString(R.string.select_photo_from_gallery),
-                getString(R.string.take_picture)};
-        pictureDialog.setItems(pictureDialogItems,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case 0:
-                                choosePhotoFromGallery();
-                                break;
-                            case 1:
-                                takePhotoFromCamera();
-                                break;
-                        }
-                    }
-                });
+        dialogView.findViewById(R.id.choiceGallery).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choosePhotoFromGallery();
+            }
+        });
+        dialogView.findViewById(R.id.choiceCamera).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                takePhotoFromCamera();
+            }
+        });
+        dialogBuilder.setView(dialogView);
+        pictureDialog = dialogBuilder.create();
+        pictureDialog.setContentView(dialogView);
         pictureDialog.show();
 
     }

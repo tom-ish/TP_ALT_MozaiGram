@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
     android:layout_marginLeft="@dimen/alert_dialog_margin"
-    android:layout_marginRight="@dimen/alert_dialog_margin">
+    android:layout_marginRight="@dimen/alert_dialog_margin"
+    android:background="@color/dark_white">
+
+    <TextView
+        android:id="@+id/choiceGallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:padding="@dimen/button_margin"
+        android:text="@string/select_photo_from_gallery"/>
+
+
+    <TextView
+        android:id="@+id/choiceCamera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:layout_below="@id/choiceGallery"
+        android:padding="@dimen/button_margin"
+        android:text="@string/take_picture"/>
 
 </RelativeLayout>
