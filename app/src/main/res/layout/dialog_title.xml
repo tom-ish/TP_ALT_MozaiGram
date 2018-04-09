@@ -2,7 +2,7 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_bottom="@dimen/button_margin"
+    android:layout_marginBottom="@dimen/button_margin"
     android:background="@color/ocean_blue"
     android:textColor="@color/dark_white"
     android:padding="@dimen/button_margin"

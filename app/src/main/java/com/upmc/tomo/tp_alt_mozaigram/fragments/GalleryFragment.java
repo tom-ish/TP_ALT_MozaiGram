@@ -79,7 +79,6 @@ public class GalleryFragment extends Fragment {
 
             public boolean onItemLongClick(AdapterView<?> arg0, View v,
                                            final int index, long arg3) {
-
                 showPictureDialog(index);
                 return true;
             }
@@ -127,6 +126,7 @@ public class GalleryFragment extends Fragment {
         if (deleted) {
             adapter.notifyDataSetChanged();
             Toast.makeText(getActivity(), getString(R.string.msg_delete_picture), Toast.LENGTH_SHORT).show();
+            actionDialog.dismiss();
         }
     }
 
@@ -147,6 +147,7 @@ public class GalleryFragment extends Fragment {
                     WallpaperManager wallpaperManager = WallpaperManager.getInstance(getActivity());
                     wallpaperManager.setBitmap(bitmap);
                     progress.dismiss();
+                    actionDialog.dismiss();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
