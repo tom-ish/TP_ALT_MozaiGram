@@ -12,6 +12,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_selector"
         android:text="@string/ok"
+        android:textSize="@dimen/textSize"
         android:textColor="@color/dark_grey"/>
 
 </RelativeLayout>

@@ -25,6 +25,7 @@ import java.util.HashMap;
 
 public class Utils {
     static final String TAG = Utils.class.getSimpleName();
+
     public static  boolean hasPermissions(Context context, String... permissions) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
             for (String permission : permissions) {

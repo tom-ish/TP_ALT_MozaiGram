@@ -1,21 +1,26 @@
 package com.upmc.tomo.tp_alt_mozaigram;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.upmc.tomo.tp_alt_mozaigram.bridge.IFragmentInteractionListener;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.GalleryFragment;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.MozaikGenerationFragment_;
 import com.upmc.tomo.tp_alt_mozaigram.model.DisplayState;
+import com.upmc.tomo.tp_alt_mozaigram.persists.Persists;
+import com.upmc.tomo.tp_alt_mozaigram.utils.Utils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -56,6 +61,9 @@ public class HomeActivity extends AppCompatActivity implements IFragmentInteract
         displayDescriptionDialog();
         fragmentManager = getFragmentManager();
 
+        if (!Utils.hasPermissions(this, Persists.PERMISSIONS_TAB)) {
+            ActivityCompat.requestPermissions(this, Persists.PERMISSIONS_TAB, Persists.PERMISSIONS);
+        }
 
         MozaikGenerationFragment mozaikGenerationFragment = new MozaikGenerationFragment_();
         this.fragmentManager.beginTransaction()
@@ -100,10 +108,9 @@ public class HomeActivity extends AppCompatActivity implements IFragmentInteract
             }
         });
         dialogBuilder.setView(dialogView);
-        View welcomeHeader = inflater.inflate(R.layout.welcome_header, null);
-
+        TextView welcomeHeader = (TextView) inflater.inflate(R.layout.welcome_header, null);
+        welcomeHeader.setText(getString(R.string.welcome_txt));
         alertDialog = dialogBuilder.create();
-        alertDialog.setTitle(getString(R.string.welcome_txt));
         alertDialog.setMessage(getString(R.string.app_description));
         alertDialog.setCustomTitle(welcomeHeader);
         alertDialog.setContentView(dialogView);

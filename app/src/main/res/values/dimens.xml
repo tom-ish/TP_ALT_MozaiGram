@@ -5,4 +5,5 @@
 
     <dimen name="button_margin">20dp</dimen>
     <dimen name="alert_dialog_margin">60dp</dimen>
+    <dimen name="textSize">16dp</dimen>
 </resources>

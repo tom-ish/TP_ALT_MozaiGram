@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
         android:padding="@dimen/button_margin"
+        android:textSize="@dimen/textSize"
         android:text="@string/select_photo_from_gallery"/>
 
 
@@ -23,6 +24,7 @@
         android:background="@drawable/button_selector"
         android:layout_below="@id/firstChoice"
         android:padding="@dimen/button_margin"
+        android:textSize="@dimen/textSize"
         android:text="@string/take_picture"/>
 
 </RelativeLayout>

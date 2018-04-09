@@ -73,7 +73,7 @@ public class GalleryFragment extends Fragment {
         if(imageList != null) {
             adapter = new SingleAlbumAdapter(view.getContext(), imageList);
             galleryGridView.setAdapter(adapter);
-            new LoadImagesTask(imageList, adapter, galleryGridView, getFragmentManager()).execute();
+            new LoadImagesTask(imageList, adapter, galleryGridView, getFragmentManager(), getActivity()).execute();
         }
         galleryGridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
@@ -109,7 +109,9 @@ public class GalleryFragment extends Fragment {
             }
         });
         actionDialog = dialogBuilder.create();
-        actionDialog.setTitle(getString(R.string.choose_action));
+        TextView dialogTitle = (TextView) getActivity().getLayoutInflater().inflate(R.layout.dialog_title, null);
+        dialogTitle.setText(getString(R.string.choose_action));
+        actionDialog.setCustomTitle(dialogTitle);
         actionDialog.setContentView(dialogView);
         actionDialog.show();
     }

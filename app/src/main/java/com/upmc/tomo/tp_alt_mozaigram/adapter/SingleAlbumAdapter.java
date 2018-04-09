@@ -48,13 +48,6 @@ public class SingleAlbumAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.activity_single_image_row, parent, false);
             holder.image = convertView.findViewById(R.id.galleryImage);
-            holder.iconMenu = convertView.findViewById(R.id.iconMenu);
-            holder.iconMenu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.e(TAG, "iconMenu clicked!");
-                }
-            });
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -74,6 +67,5 @@ public class SingleAlbumAdapter extends BaseAdapter {
 
     static class ViewHolder {
         ImageView image;
-        ImageView iconMenu;
     }
 }

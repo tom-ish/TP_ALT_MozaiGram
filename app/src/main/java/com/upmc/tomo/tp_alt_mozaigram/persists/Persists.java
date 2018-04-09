@@ -1,5 +1,7 @@
 package com.upmc.tomo.tp_alt_mozaigram.persists;
 
+import android.Manifest;
+
 import com.upmc.tomo.tp_alt_mozaigram.model.User;
 
 /**
@@ -25,5 +27,7 @@ public class Persists {
     public static User currentUser;
 
     public static String POKEMON_IMAGE_REFERENCE_PATH = "C:\\Users\\Tomo\\Documents\\TP_ALT_MozaiGram\\pokemon_list.png";
+
+    public static String[] PERMISSIONS_TAB = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
 
 }

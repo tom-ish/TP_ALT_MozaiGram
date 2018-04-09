@@ -84,12 +84,7 @@ public class MozaikGenerationFragment extends Fragment {
         mozaikImage.setVisibility(GONE);
         mozaikImage.setImageBitmap(null);
 
-        String[] permissions_tab = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
-        if (!Utils.hasPermissions(getActivity(), permissions_tab)) {
-            ActivityCompat.requestPermissions(getActivity(), permissions_tab, Persists.PERMISSIONS);
-        } else {
-            showPictureDialog();
-        }
+        showPictureDialog();
 
     }
 

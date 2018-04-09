@@ -1,5 +1,6 @@
 package com.upmc.tomo.tp_alt_mozaigram.task;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +18,7 @@ import com.upmc.tomo.tp_alt_mozaigram.R;
 import com.upmc.tomo.tp_alt_mozaigram.adapter.SingleAlbumAdapter;
 import com.upmc.tomo.tp_alt_mozaigram.fragments.GalleryPreviewFragment;
 import com.upmc.tomo.tp_alt_mozaigram.persists.Persists;
+import com.upmc.tomo.tp_alt_mozaigram.utils.Utils;
 
 import java.io.File;
 import java.util.List;
@@ -27,17 +30,18 @@ import java.util.List;
 public class LoadImagesTask extends AsyncTask<String, Void, Void> {
     static final String TAG = LoadImagesTask.class.getSimpleName();
 
-    Context context;
+    Activity activity;
     FragmentManager fragmentManager;
     List<String> imageList;
     SingleAlbumAdapter adapter;
     GridView galleryGridView;
 
-    public LoadImagesTask(List<String> imageList, SingleAlbumAdapter adapter, GridView galleryGridView, FragmentManager fragmentManager) {
+    public LoadImagesTask(List<String> imageList, SingleAlbumAdapter adapter, GridView galleryGridView, FragmentManager fragmentManager, Activity activity) {
         this.imageList = imageList;
         this.adapter = adapter;
         this.galleryGridView = galleryGridView;
         this.fragmentManager = fragmentManager;
+        this.activity = activity;
     }
 
     @Override
@@ -50,6 +54,10 @@ public class LoadImagesTask extends AsyncTask<String, Void, Void> {
     protected Void doInBackground(String... args) {
         File directory = new File(Environment.getExternalStorageDirectory(), Persists.APP_IMAGES_STORAGE_DIR_PATH);
         if (directory.exists()) {
+            if (!Utils.hasPermissions(activity, Persists.PERMISSIONS_TAB)) {
+                ActivityCompat.requestPermissions(activity, Persists.PERMISSIONS_TAB, Persists.PERMISSIONS);
+            }
+
             for (String fname : directory.list()) {
                 String path = Environment.getExternalStorageDirectory() + File.separator + Persists.APP_IMAGES_STORAGE_DIR_PATH + File.separator + fname;
                 imageList.add(path);
@@ -63,7 +71,6 @@ public class LoadImagesTask extends AsyncTask<String, Void, Void> {
         adapter.notifyDataSetChanged();
         galleryGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                Log.e(TAG, imageList.get(+position));
                 Log.e(TAG, imageList.get(position));
                 GalleryPreviewFragment galleryPreviewFragment = new GalleryPreviewFragment();
                 Bundle args = new Bundle();
