@@ -190,7 +190,7 @@ public class MozaikGenerationFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_CANCELED) return;
+        if (requestCode == RESULT_CANCELED || resultCode == RESULT_CANCELED) return;
         else if (requestCode == Persists.GALLERY) {
             if (data != null && data.getData() != null) {
                 try {
