@@ -1,12 +1,17 @@
 package com.upmc.tomo.tp_alt_mozaigram.utils;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
+
+import com.upmc.tomo.tp_alt_mozaigram.persists.Persists;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,6 +40,21 @@ public class Utils {
             }
         }
         return true;
+    }
+
+    public static void setupPermissions(Activity activity) {
+        int permission = ContextCompat.checkSelfPermission(activity,
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            makeRequest(activity);
+        }
+    }
+
+    public static void makeRequest(Activity activity) {
+        ActivityCompat.requestPermissions(activity,
+                Persists.PERMISSIONS_TAB,
+                Persists.PERMISSION_REQUEST);
     }
 
     public static float convertDpToPixel(float dp, Context context){

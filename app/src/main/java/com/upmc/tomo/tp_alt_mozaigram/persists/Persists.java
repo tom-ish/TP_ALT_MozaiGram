@@ -28,6 +28,7 @@ public class Persists {
 
     public static String POKEMON_IMAGE_REFERENCE_PATH = "C:\\Users\\Tomo\\Documents\\TP_ALT_MozaiGram\\pokemon_list.png";
 
+    public static  int PERMISSION_REQUEST = 500;
     public static String[] PERMISSIONS_TAB = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
 
 }

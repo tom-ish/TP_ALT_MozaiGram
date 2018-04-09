@@ -54,9 +54,7 @@ public class LoadImagesTask extends AsyncTask<String, Void, Void> {
     protected Void doInBackground(String... args) {
         File directory = new File(Environment.getExternalStorageDirectory(), Persists.APP_IMAGES_STORAGE_DIR_PATH);
         if (directory.exists()) {
-            if (!Utils.hasPermissions(activity, Persists.PERMISSIONS_TAB)) {
-                ActivityCompat.requestPermissions(activity, Persists.PERMISSIONS_TAB, Persists.PERMISSIONS);
-            }
+            Utils.setupPermissions(activity);
 
             for (String fname : directory.list()) {
                 String path = Environment.getExternalStorageDirectory() + File.separator + Persists.APP_IMAGES_STORAGE_DIR_PATH + File.separator + fname;

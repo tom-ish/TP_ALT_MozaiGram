@@ -1,12 +1,15 @@
 package com.upmc.tomo.tp_alt_mozaigram;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -56,14 +59,23 @@ public class HomeActivity extends AppCompatActivity implements IFragmentInteract
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if(requestCode == Persists.PERMISSION_REQUEST){
+            if(grantResults[0] != PackageManager.PERMISSION_GRANTED
+                            && grantResults[1] != PackageManager.PERMISSION_GRANTED){
+                this.finish();
+                System.exit(0);
+            }
+        }
+    }
+
     @AfterViews
     public void afterViews() {
         displayDescriptionDialog();
         fragmentManager = getFragmentManager();
 
-        if (!Utils.hasPermissions(this, Persists.PERMISSIONS_TAB)) {
-            ActivityCompat.requestPermissions(this, Persists.PERMISSIONS_TAB, Persists.PERMISSIONS);
-        }
+        Utils.setupPermissions(this);
 
         MozaikGenerationFragment mozaikGenerationFragment = new MozaikGenerationFragment_();
         this.fragmentManager.beginTransaction()
