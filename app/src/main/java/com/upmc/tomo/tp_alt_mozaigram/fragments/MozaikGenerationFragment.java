@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,7 +12,6 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -98,13 +96,13 @@ public class MozaikGenerationFragment extends Fragment {
     private void showPictureDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         View dialogView = getActivity().getLayoutInflater().inflate(R.layout.custom_picture_dialog, null);
-        dialogView.findViewById(R.id.choiceGallery).setOnClickListener(new OnClickListener() {
+        dialogView.findViewById(R.id.firstChoice).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 choosePhotoFromGallery();
             }
         });
-        dialogView.findViewById(R.id.choiceCamera).setOnClickListener(new OnClickListener() {
+        dialogView.findViewById(R.id.secondChoice).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 takePhotoFromCamera();

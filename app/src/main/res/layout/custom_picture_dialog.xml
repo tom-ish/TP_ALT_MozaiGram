@@ -8,7 +8,7 @@
     android:background="@color/dark_white">
 
     <TextView
-        android:id="@+id/choiceGallery"
+        android:id="@+id/firstChoice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
@@ -17,11 +17,11 @@
 
 
     <TextView
-        android:id="@+id/choiceCamera"
+        android:id="@+id/secondChoice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:layout_below="@id/choiceGallery"
+        android:layout_below="@id/firstChoice"
         android:padding="@dimen/button_margin"
         android:text="@string/take_picture"/>
 
